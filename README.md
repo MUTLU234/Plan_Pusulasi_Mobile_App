@@ -3,3 +3,6 @@ Fonksiyonel Programlama Dersi Kapsamında Oluşturulmuştur.
 Proje Adı: Plan Pusulası
 Gerçekleştiren : Nuretttin Mutlu TÜVER
 Okul No: 220541083
+
+
+Test_baglanti
