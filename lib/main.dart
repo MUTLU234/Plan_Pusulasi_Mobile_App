@@ -2,9 +2,64 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:plan_pusulasi/constants/color.dart';
 import 'package:plan_pusulasi/screens/add_task_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+class ThemeProvider extends ChangeNotifier {
+  bool _isDarkMode = false;
+
+  bool get isDarkMode => _isDarkMode;
+
+  ThemeData get currentTheme => _isDarkMode ? _darkTheme : _lightTheme;
+
+  void toggleTheme() {
+    _isDarkMode = !_isDarkMode;
+    notifyListeners();
+  }
+
+  static final ThemeData _lightTheme = ThemeData(
+    primarySwatch: Colors.deepPurple,
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: Colors.white,
+    cardColor: Colors.white,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white,
+      foregroundColor: Colors.white,
+    ),
+  );
+
+  static final MaterialColor _customPurple =
+      MaterialColor(0xFF25052B, const <int, Color>{
+        50: Color(0xFFE8E0E9),
+        100: Color(0xFFC5B3C8),
+        200: Color(0xFFA080A3),
+        300: Color(0xFF7A4D7E),
+        400: Color(0xFF5F2663),
+        500: Color(0xFF25052B),
+        600: Color(0xFF210426),
+        700: Color(0xFF1B0321),
+        800: Color(0xFF16021B),
+        900: Color(0xFF0D0110),
+      });
+
+  static final ThemeData _darkTheme = ThemeData(
+    primarySwatch: _customPurple,
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: Colors.grey[900],
+    cardColor: Colors.grey[800],
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.grey[900],
+      foregroundColor: Colors.white,
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -36,6 +91,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: Provider.of<ThemeProvider>(context).currentTheme,
       home: HomeScreen(
         tasks: tasks,
         completedTasks: completedTasks,
@@ -66,45 +122,90 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
     double deviceWidth = MediaQuery.of(context).size.width;
+    final themeProvider = Provider.of<ThemeProvider>(context);
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: HexColor(backgroundColor),
+        backgroundColor:
+            themeProvider.isDarkMode
+                ? Colors.grey[900]
+                : HexColor(backgroundColor),
         body: Column(
           children: [
             // Header
-            Container(
-              width: deviceWidth,
-              height: deviceHeight / 3,
-              decoration: BoxDecoration(
-                color: Colors.purple,
-                image: const DecorationImage(
-                  image: AssetImage("lib/assets/images/header.png"),
-                  fit: BoxFit.cover,
+            Stack(
+              children: [
+                Container(
+                  width: deviceWidth,
+                  height: deviceHeight / 3,
+                  decoration: BoxDecoration(
+                    color:
+                        themeProvider.isDarkMode
+                            ? Colors.grey[900]
+                            : const Color.fromARGB(255, 60, 8, 69),
+                    image: const DecorationImage(
+                      image: AssetImage("lib/assets/images/header.png"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "24 Mart 2025",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      const Text(
+                        "Yapılacak Aktiviteler",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "24 Mart 2025",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                Positioned(
+                  top: 20,
+                  right: 20,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color:
+                          themeProvider.isDarkMode
+                              ? Colors.grey[800]
+                              : Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 5,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: IconButton(
+                      icon: Icon(
+                        themeProvider.isDarkMode
+                            ? Icons.light_mode
+                            : Icons.dark_mode,
+                        color:
+                            themeProvider.isDarkMode
+                                ? Colors.white
+                                : Colors.black,
+                      ),
+                      onPressed: () {
+                        themeProvider.toggleTheme();
+                      },
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    "Yapılacak Aktiviteler",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             // Top Column - Active Tasks
             Expanded(
@@ -130,6 +231,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             margin: const EdgeInsets.only(bottom: 10),
                             child: Card(
                               elevation: 4,
+                              color:
+                                  themeProvider.isDarkMode
+                                      ? Colors.grey[800]
+                                      : Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -206,7 +311,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             margin: const EdgeInsets.only(bottom: 10),
                             child: Card(
                               elevation: 2,
-                              color: Colors.grey[200],
+                              color:
+                                  themeProvider.isDarkMode
+                                      ? Colors.grey[700]
+                                      : Colors.grey[200],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -283,7 +391,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
+                  backgroundColor:
+                      themeProvider.isDarkMode
+                          ? Colors.deepPurple[800]
+                          : Colors.deepPurple,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 40,
                     vertical: 15,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:plan_pusulasi/constants/color.dart';
+import 'package:plan_pusulasi/main.dart';
+import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
   final Function(String) onTaskAdded;
@@ -23,7 +25,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   void _submitTask() {
     if (_formKey.currentState!.validate()) {
-      print('Görev formu doğrulandı: ${_taskController.text}'); // Debug için
+      print('Görev formu doğrulandı: ${_taskController.text}');
       widget.onTaskAdded(_taskController.text);
       Navigator.pop(context);
     }
@@ -31,10 +33,16 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
-      backgroundColor: HexColor(backgroundColor),
+      backgroundColor:
+          themeProvider.isDarkMode
+              ? Colors.grey[900]
+              : HexColor(backgroundColor),
       appBar: AppBar(
-        backgroundColor: Colors.purple,
+        backgroundColor:
+            themeProvider.isDarkMode ? Colors.grey[900] : Colors.deepPurple,
         title: const Text('Yeni Görev Ekle'),
         centerTitle: true,
       ),
@@ -53,9 +61,21 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor:
+                      themeProvider.isDarkMode
+                          ? Colors.grey[800]
+                          : Colors.white,
+                  hintStyle: TextStyle(
+                    color:
+                        themeProvider.isDarkMode
+                            ? Colors.grey[400]
+                            : Colors.grey[600],
+                  ),
                 ),
-                style: const TextStyle(fontSize: 18),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Lütfen bir görev başlığı girin';
@@ -67,7 +87,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ElevatedButton(
                 onPressed: _submitTask,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
+                  backgroundColor:
+                      themeProvider.isDarkMode
+                          ? Colors.deepPurple[800]
+                          : Colors.deepPurple,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
