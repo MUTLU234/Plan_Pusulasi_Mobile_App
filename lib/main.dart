@@ -151,9 +151,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "24 Mart 2025",
-                        style: TextStyle(
+                      Text(
+                        "${DateTime.now().day} ${DateTime.now().month == 3 ? 'Mart' : DateTime.now().month == 4 ? 'Nisan' : 'Mayıs'} ${DateTime.now().year}",
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -260,20 +260,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       ],
                                     ),
-                                    Checkbox(
-                                      value: widget.tasks[index].isCompleted,
-                                      onChanged: (val) {
-                                        setState(() {
-                                          widget.tasks[index].isCompleted =
-                                              val!;
-                                          if (val) {
-                                            widget.completedTasks.add(
-                                              widget.tasks[index],
-                                            );
-                                            widget.tasks.removeAt(index);
-                                          }
-                                        });
-                                      },
+                                    Row(
+                                      children: [
+                                        Checkbox(
+                                          value: widget.tasks[index].isCompleted,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              widget.tasks[index].isCompleted =
+                                                  val!;
+                                              if (val) {
+                                                widget.completedTasks.add(
+                                                  widget.tasks[index],
+                                                );
+                                                widget.tasks.removeAt(index);
+                                              }
+                                            });
+                                          },
+                                        ),
+                                        IconButton(
+                                          icon: const Icon(Icons.delete),
+                                          onPressed: () {
+                                            setState(() {
+                                              widget.tasks.removeAt(index);
+                                            });
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -344,15 +356,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ],
                                     ),
                                     Checkbox(
-                                      value:
-                                          widget
-                                              .completedTasks[index]
-                                              .isCompleted,
+                                      value: widget.completedTasks[index].isCompleted,
                                       onChanged: (val) {
                                         setState(() {
-                                          widget
-                                              .completedTasks[index]
-                                              .isCompleted = val!;
+                                          widget.completedTasks[index].isCompleted = val!;
                                           if (!val) {
                                             widget.tasks.add(
                                               widget.completedTasks[index],
