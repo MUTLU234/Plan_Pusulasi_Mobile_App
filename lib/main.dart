@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:intl/intl.dart';
 import 'package:plan_pusulasi/constants/color.dart';
+import 'package:plan_pusulasi/helpers/db_helper.dart';
+import 'package:plan_pusulasi/providers/auth_provider.dart';
 import 'package:plan_pusulasi/screens/add_task_screen.dart';
+import 'package:plan_pusulasi/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -15,9 +22,7 @@ void main() {
 
 class ThemeProvider extends ChangeNotifier {
   bool _isDarkMode = false;
-
   bool get isDarkMode => _isDarkMode;
-
   ThemeData get currentTheme => _isDarkMode ? _darkTheme : _lightTheme;
 
   void toggleTheme() {
@@ -32,12 +37,12 @@ class ThemeProvider extends ChangeNotifier {
     cardColor: Colors.white,
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.white,
-      foregroundColor: Colors.white,
+      foregroundColor: Colors.black,
     ),
   );
 
   static final MaterialColor _customPurple =
-      MaterialColor(0xFF25052B, const <int, Color>{
+      MaterialColor(0xFF25052B, <int, Color>{
         50: Color(0xFFE8E0E9),
         100: Color(0xFFC5B3C8),
         200: Color(0xFFA080A3),
@@ -55,74 +60,119 @@ class ThemeProvider extends ChangeNotifier {
     brightness: Brightness.dark,
     scaffoldBackgroundColor: Colors.grey[900],
     cardColor: Colors.grey[800],
-    appBarTheme: AppBarTheme(
-      backgroundColor: Colors.grey[900],
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF212121),
       foregroundColor: Colors.white,
     ),
   );
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+enum TaskType { personal, work, study, other }
 
-  @override
-  State<MyApp> createState() => _MyAppState();
+class Task {
+  int? id;
+  String title;
+  TaskType type;
+  DateTime dueDate;
+  bool isCompleted;
+
+  Task({
+    this.id,
+    required this.title,
+    required this.type,
+    required this.dueDate,
+    this.isCompleted = false,
+  });
 }
 
-class _MyAppState extends State<MyApp> {
-  List<Task> tasks = [
-    Task("Fonk. Prog. Görevi", false),
-    Task("Ana Ekran Düzenini İncele", false),
-    Task("Boşluk ve Margin Ayarları", false),
-  ];
-
-  List<Task> completedTasks = [
-    Task("Fonk. Prog. Görevi", true),
-    Task("Fonk. Prog. Görevi", true),
-  ];
-
-  void _addNewTask(String taskTitle) {
-    setState(() {
-      tasks.add(Task(taskTitle, false));
-    });
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: Provider.of<ThemeProvider>(context).currentTheme,
-      home: HomeScreen(
-        tasks: tasks,
-        completedTasks: completedTasks,
-        onTaskAdded: _addNewTask,
-      ),
+    final theme = Provider.of<ThemeProvider>(context).currentTheme;
+
+    return Consumer<AuthProvider>(
+      builder: (ctx, auth, _) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: theme,
+          home:
+              auth.isLoggedIn
+                  ? const HomeScreenContainer()
+                  : const LoginScreen(),
+        );
+      },
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  final List<Task> tasks;
-  final List<Task> completedTasks;
-  final Function(String) onTaskAdded;
-
-  const HomeScreen({
-    super.key,
-    required this.tasks,
-    required this.completedTasks,
-    required this.onTaskAdded,
-  });
-
+class HomeScreenContainer extends StatefulWidget {
+  const HomeScreenContainer({Key? key}) : super(key: key);
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenContainer> createState() => _HomeScreenContainerState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenContainerState extends State<HomeScreenContainer> {
+  List<Task> _tasks = [];
+  List<Task> _completedTasks = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTasks();
+  }
+
+  Future<void> _loadTasks() async {
+    final rows = await DBHelper.instance.queryAllTasks();
+    final tasks =
+        rows.map((r) {
+          return Task(
+            id: r['id'] as int,
+            title: r['title'] as String,
+            type: TaskType.values.firstWhere((e) => e.name == r['type']),
+            dueDate: DateTime.fromMillisecondsSinceEpoch(r['due_date'] as int),
+            isCompleted: (r['is_completed'] as int) == 1,
+          );
+        }).toList();
+
+    setState(() {
+      _tasks = tasks.where((t) => !t.isCompleted).toList();
+      _completedTasks = tasks.where((t) => t.isCompleted).toList();
+    });
+  }
+
+  Future<void> _addNewTask(Task newTask) async {
+    final id = await DBHelper.instance.insertTask({
+      'title': newTask.title,
+      'type': newTask.type.name,
+      'due_date': newTask.dueDate.millisecondsSinceEpoch,
+      'is_completed': newTask.isCompleted ? 1 : 0,
+    });
+    newTask.id = id;
+    _loadTasks();
+  }
+
+  Future<void> _updateTaskStatus(Task t, bool completed) async {
+    await DBHelper.instance.updateTask(t.id!, {
+      'title': t.title,
+      'type': t.type.name,
+      'due_date': t.dueDate.millisecondsSinceEpoch,
+      'is_completed': completed ? 1 : 0,
+    });
+    _loadTasks();
+  }
+
+  Future<void> _deleteTask(Task t) async {
+    await DBHelper.instance.deleteTask(t.id!);
+    _loadTasks();
+  }
+
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
-    double deviceWidth = MediaQuery.of(context).size.width;
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final dh = MediaQuery.of(context).size.height;
+    final dw = MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: Scaffold(
@@ -132,12 +182,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 : HexColor(backgroundColor),
         body: Column(
           children: [
-            // Header
+            // HEADER
             Stack(
               children: [
                 Container(
-                  width: deviceWidth,
-                  height: deviceHeight / 3,
+                  width: dw,
+                  height: dh * 0.30,
                   decoration: BoxDecoration(
                     color:
                         themeProvider.isDarkMode
@@ -152,7 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "${DateTime.now().day} ${DateTime.now().month == 3 ? 'Mart' : DateTime.now().month == 4 ? 'Nisan' : 'Mayıs'} ${DateTime.now().year}",
+                        DateFormat('dd MMMM yyyy').format(DateTime.now()),
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -172,19 +222,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Positioned(
-                  top: 20,
-                  right: 20,
+                  top: 12,
+                  right: 12,
                   child: Container(
                     decoration: BoxDecoration(
                       color:
                           themeProvider.isDarkMode
                               ? Colors.grey[800]
                               : Colors.white,
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(8),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
-                          blurRadius: 5,
+                          blurRadius: 4,
                           offset: const Offset(0, 2),
                         ),
                       ],
@@ -199,15 +249,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ? Colors.white
                                 : Colors.black,
                       ),
-                      onPressed: () {
-                        themeProvider.toggleTheme();
-                      },
+                      onPressed: themeProvider.toggleTheme,
                     ),
                   ),
                 ),
               ],
             ),
-            // Top Column - Active Tasks
+
+            // Yapılacaklar
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
@@ -224,71 +273,40 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 10),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: widget.tasks.length,
-                        itemBuilder: (context, index) {
-                          return AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            margin: const EdgeInsets.only(bottom: 10),
-                            child: Card(
-                              elevation: 4,
-                              color:
-                                  themeProvider.isDarkMode
-                                      ? Colors.grey[800]
-                                      : Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
+                        itemCount: _tasks.length,
+                        itemBuilder: (ctx, i) {
+                          final t = _tasks[i];
+                          return Card(
+                            elevation: 4,
+                            color:
+                                themeProvider.isDarkMode
+                                    ? Colors.grey[800]
+                                    : Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: ListTile(
+                              leading: Checkbox(
+                                value: t.isCompleted,
+                                onChanged: (_) {
+                                  _updateTaskStatus(t, !t.isCompleted);
+                                },
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(15),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.note_add_rounded,
-                                          size: 40,
-                                        ),
-                                        const SizedBox(width: 15),
-                                        Text(
-                                          widget.tasks[index].title,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                          value: widget.tasks[index].isCompleted,
-                                          onChanged: (val) {
-                                            setState(() {
-                                              widget.tasks[index].isCompleted =
-                                                  val!;
-                                              if (val) {
-                                                widget.completedTasks.add(
-                                                  widget.tasks[index],
-                                                );
-                                                widget.tasks.removeAt(index);
-                                              }
-                                            });
-                                          },
-                                        ),
-                                        IconButton(
-                                          icon: const Icon(Icons.delete),
-                                          onPressed: () {
-                                            setState(() {
-                                              widget.tasks.removeAt(index);
-                                            });
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                              title: Text(
+                                t.title,
+                                style: TextStyle(
+                                  decoration:
+                                      t.isCompleted
+                                          ? TextDecoration.lineThrough
+                                          : TextDecoration.none,
                                 ),
+                              ),
+                              subtitle: Text(
+                                '${t.type.name.toUpperCase()} - ${DateFormat('dd.MM.yyyy').format(t.dueDate)}',
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () => _deleteTask(t),
                               ),
                             ),
                           );
@@ -299,7 +317,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            // Bottom Column - Completed Tasks
+
+            // Tamamlananlar
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
@@ -316,63 +335,37 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 10),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: widget.completedTasks.length,
-                        itemBuilder: (context, index) {
-                          return AnimatedContainer(
-                            duration: const Duration(milliseconds: 300),
-                            margin: const EdgeInsets.only(bottom: 10),
-                            child: Card(
-                              elevation: 2,
-                              color:
-                                  themeProvider.isDarkMode
-                                      ? Colors.grey[700]
-                                      : Colors.grey[200],
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
+                        itemCount: _completedTasks.length,
+                        itemBuilder: (ctx, i) {
+                          final t = _completedTasks[i];
+                          return Card(
+                            elevation: 2,
+                            color:
+                                themeProvider.isDarkMode
+                                    ? Colors.grey[700]
+                                    : Colors.grey[200],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: ListTile(
+                              leading: const Icon(
+                                Icons.check_circle,
+                                size: 40,
+                                color: Colors.green,
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(15),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.check_circle,
-                                          size: 40,
-                                          color: Colors.green,
-                                        ),
-                                        const SizedBox(width: 15),
-                                        Text(
-                                          widget.completedTasks[index].title,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Checkbox(
-                                      value: widget.completedTasks[index].isCompleted,
-                                      onChanged: (val) {
-                                        setState(() {
-                                          widget.completedTasks[index].isCompleted = val!;
-                                          if (!val) {
-                                            widget.tasks.add(
-                                              widget.completedTasks[index],
-                                            );
-                                            widget.completedTasks.removeAt(
-                                              index,
-                                            );
-                                          }
-                                        });
-                                      },
-                                    ),
-                                  ],
+                              title: Text(
+                                t.title,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.lineThrough,
                                 ),
+                              ),
+                              subtitle: Text(
+                                '${t.type.name.toUpperCase()} - ${DateFormat('dd.MM.yyyy').format(t.dueDate)}',
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () => _deleteTask(t),
                               ),
                             ),
                           );
@@ -383,49 +376,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            // Add Task Button
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              AddTaskScreen(onTaskAdded: widget.onTaskAdded),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      themeProvider.isDarkMode
-                          ? Colors.deepPurple[800]
-                          : Colors.deepPurple,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 40,
-                    vertical: 15,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                child: const Text(
-                  "Yeni Görev Ekle",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
-                ),
-              ),
-            ),
           ],
         ),
+
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (_) => AddTaskScreen(onTaskAdded: _addNewTask),
+            );
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       ),
     );
   }
-}
-
-class Task {
-  String title;
-  bool isCompleted;
-
-  Task(this.title, this.isCompleted);
 }
