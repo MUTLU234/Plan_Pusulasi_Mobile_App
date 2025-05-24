@@ -31,113 +31,116 @@ class GamesScreen extends StatelessWidget {
         title: const Text('Oyunlar'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: GridView.count(
-          crossAxisCount: 2,
-          mainAxisSpacing: 16,
-          crossAxisSpacing: 16,
-          children: [
-            // Yılan Oyunu
-            _buildGameCard(
-              context,
-              'Yılan Oyunu',
-              Icons.videogame_asset,
-              Colors.green[700]!,
-              () => Navigator.push(
+      body: Scrollbar(
+        thumbVisibility: false, // Her zaman görünsün
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: GridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 16,
+            crossAxisSpacing: 16,
+            children: [
+              // Yılan Oyunu
+              _buildGameCard(
                 context,
-                MaterialPageRoute(builder: (_) => const SnakeGameScreen()),
+                'Yılan Oyunu',
+                Icons.videogame_asset,
+                Colors.green[700]!,
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SnakeGameScreen()),
+                ),
               ),
-            ),
-            // Kelime Oyunu
-            _buildGameCard(
-              context,
-              'Kelime Oyunu',
-              Icons.text_fields,
-              Colors.blue[700]!,
-              () => Navigator.push(
+              // Kelime Oyunu
+              _buildGameCard(
                 context,
-                MaterialPageRoute(builder: (_) => const WordPuzzleScreen()),
+                'Kelime Oyunu',
+                Icons.text_fields,
+                Colors.blue[700]!,
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const WordPuzzleScreen()),
+                ),
               ),
-            ),
-            // Hafıza Kartları
-            _buildGameCard(
-              context,
-              'Hafıza Kartları',
-              Icons.grid_view,
-              Colors.orange[700]!,
-              () => Navigator.push(
+              // Hafıza Kartları
+              _buildGameCard(
                 context,
-                MaterialPageRoute(builder: (_) => const MemoryGameScreen()),
+                'Hafıza Kartları',
+                Icons.grid_view,
+                Colors.orange[700]!,
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MemoryGameScreen()),
+                ),
               ),
-            ),
-            // Matematik Yarışması
-            _buildGameCard(
-              context,
-              'Matematik Yarışması',
-              Icons.calculate,
-              Colors.purple[700]!,
-              () => Navigator.push(
+              // Matematik Yarışması
+              _buildGameCard(
                 context,
-                MaterialPageRoute(builder: (_) => const MathRaceScreen()),
+                'Matematik Yarışması',
+                Icons.calculate,
+                Colors.purple[700]!,
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const MathRaceScreen()),
+                ),
               ),
-            ),
-            // Renk Eşleştirme
-            _buildGameCard(
-              context,
-              'Renk Eşleştirme',
-              Icons.color_lens,
-              Colors.pink[700]!,
-              () => Navigator.push(
+              // Renk Eşleştirme
+              _buildGameCard(
                 context,
-                MaterialPageRoute(builder: (_) => const ColorMatchScreen()),
+                'Renk Eşleştirme',
+                Icons.color_lens,
+                Colors.pink[700]!,
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ColorMatchScreen()),
+                ),
               ),
-            ),
-            // Emoji Bulmaca
-            _buildGameCard(
-              context,
-              'Emoji Bulmaca',
-              Icons.emoji_emotions,
-              Colors.amber[700]!,
-              () => Navigator.push(
+              // Emoji Bulmaca
+              _buildGameCard(
                 context,
-                MaterialPageRoute(builder: (_) => const EmojiPuzzleScreen()),
+                'Emoji Bulmaca',
+                Icons.emoji_emotions,
+                Colors.amber[700]!,
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const EmojiPuzzleScreen()),
+                ),
               ),
-            ),
-            // Mantık Bulmacaları
-            _buildGameCard(
-              context,
-              'Mantık Bulmacaları',
-              Icons.psychology,
-              Colors.teal[700]!,
-              () => Navigator.push(
+              // Mantık Bulmacaları
+              _buildGameCard(
                 context,
-                MaterialPageRoute(builder: (_) => const LogicPuzzleScreen()),
+                'Mantık Bulmacaları',
+                Icons.psychology,
+                Colors.teal[700]!,
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LogicPuzzleScreen()),
+                ),
               ),
-            ),
-            // Balon Patlatma
-            _buildGameCard(
-              context,
-              'Balon Patlatma',
-              Icons.bubble_chart,
-              Colors.red[400]!,
-              () => Navigator.push(
+              // Balon Patlatma
+              _buildGameCard(
                 context,
-                MaterialPageRoute(builder: (_) => const BubblePopScreen()),
+                'Balon Patlatma',
+                Icons.bubble_chart,
+                Colors.red[400]!,
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const BubblePopScreen()),
+                ),
               ),
-            ),
-            // Flappy Kuş
-            _buildGameCard(
-              context,
-              'Flappy Kuş',
-              Icons.flight,
-              Colors.lightGreen[400]!,
-              () => Navigator.push(
+              // Flappy Kuş
+              _buildGameCard(
                 context,
-                MaterialPageRoute(builder: (_) => const FlappyBirdScreen()),
+                'Flappy Kuş',
+                Icons.flight,
+                Colors.lightGreen[400]!,
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const FlappyBirdScreen()),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
