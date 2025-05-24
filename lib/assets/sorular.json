@@ -1,0 +1,981 @@
+[
+  {
+    "question": "Çözün: 4x + 2 = 66 ise x kaçtır?",
+    "options": [
+      "16",
+      "23",
+      "12",
+      "19"
+    ],
+    "answer": "16",
+    "explanation": "4x = 66 - 2 = 64, x = 64/4 = 16."
+  },
+  {
+    "question": "Çözün: 3x + 5 = 29 ise x kaçtır?",
+    "options": [
+      "8",
+      "16",
+      "7",
+      "10"
+    ],
+    "answer": "8",
+    "explanation": "3x = 29 - 5 = 24, x = 24/3 = 8."
+  },
+  {
+    "question": "Çözün: 2x + 6 = 46 ise x kaçtır?",
+    "options": [
+      "20",
+      "25",
+      "30",
+      "18"
+    ],
+    "answer": "20",
+    "explanation": "2x = 46 - 6 = 40, x = 40/2 = 20."
+  },
+  {
+    "question": "Çözün: 7x + 5 = 61 ise x kaçtır?",
+    "options": [
+      "8",
+      "10",
+      "18",
+      "4"
+    ],
+    "answer": "8",
+    "explanation": "7x = 61 - 5 = 56, x = 56/7 = 8."
+  },
+  {
+    "question": "Çözün: 6x + 8 = 44 ise x kaçtır?",
+    "options": [
+      "14",
+      "6",
+      "8",
+      "3"
+    ],
+    "answer": "6",
+    "explanation": "6x = 44 - 8 = 36, x = 36/6 = 6."
+  },
+  {
+    "question": "Çözün: 7x + 9 = 100 ise x kaçtır?",
+    "options": [
+      "22",
+      "13",
+      "8",
+      "15"
+    ],
+    "answer": "13",
+    "explanation": "7x = 100 - 9 = 91, x = 91/7 = 13."
+  },
+  {
+    "question": "Çözün: 8x + 10 = 58 ise x kaçtır?",
+    "options": [
+      "15",
+      "6",
+      "9",
+      "2"
+    ],
+    "answer": "6",
+    "explanation": "8x = 58 - 10 = 48, x = 48/8 = 6."
+  },
+  {
+    "question": "Çözün: 4x + 3 = 67 ise x kaçtır?",
+    "options": [
+      "15",
+      "16",
+      "25",
+      "20"
+    ],
+    "answer": "16",
+    "explanation": "4x = 67 - 3 = 64, x = 64/4 = 16."
+  },
+  {
+    "question": "Çözün: 7x + 7 = 28 ise x kaçtır?",
+    "options": [
+      "1",
+      "8",
+      "10",
+      "3"
+    ],
+    "answer": "3",
+    "explanation": "7x = 28 - 7 = 21, x = 21/7 = 3."
+  },
+  {
+    "question": "Çözün: 4x + 8 = 84 ise x kaçtır?",
+    "options": [
+      "22",
+      "26",
+      "19",
+      "15"
+    ],
+    "answer": "19",
+    "explanation": "4x = 84 - 8 = 76, x = 76/4 = 19."
+  },
+  {
+    "question": "Çözün: 4x + 5 = 77 ise x kaçtır?",
+    "options": [
+      "21",
+      "24",
+      "18",
+      "17"
+    ],
+    "answer": "18",
+    "explanation": "4x = 77 - 5 = 72, x = 72/4 = 18."
+  },
+  {
+    "question": "Çözün: 5x + 5 = 75 ise x kaçtır?",
+    "options": [
+      "14",
+      "21",
+      "12",
+      "17"
+    ],
+    "answer": "14",
+    "explanation": "5x = 75 - 5 = 70, x = 70/5 = 14."
+  },
+  {
+    "question": "Çözün: 8x + 1 = 113 ise x kaçtır?",
+    "options": [
+      "13",
+      "21",
+      "16",
+      "14"
+    ],
+    "answer": "14",
+    "explanation": "8x = 113 - 1 = 112, x = 112/8 = 14."
+  },
+  {
+    "question": "Çözün: 4x + 3 = 11 ise x kaçtır?",
+    "options": [
+      "6",
+      "1",
+      "2",
+      "12"
+    ],
+    "answer": "2",
+    "explanation": "4x = 11 - 3 = 8, x = 8/4 = 2."
+  },
+  {
+    "question": "Çözün: 4x + 4 = 60 ise x kaçtır?",
+    "options": [
+      "9",
+      "23",
+      "14",
+      "15"
+    ],
+    "answer": "14",
+    "explanation": "4x = 60 - 4 = 56, x = 56/4 = 14."
+  },
+  {
+    "question": "Çözün: 8x + 6 = 118 ise x kaçtır?",
+    "options": [
+      "9",
+      "21",
+      "15",
+      "14"
+    ],
+    "answer": "14",
+    "explanation": "8x = 118 - 6 = 112, x = 112/8 = 14."
+  },
+  {
+    "question": "Çözün: 4x + 10 = 62 ise x kaçtır?",
+    "options": [
+      "13",
+      "16",
+      "11",
+      "20"
+    ],
+    "answer": "13",
+    "explanation": "4x = 62 - 10 = 52, x = 52/4 = 13."
+  },
+  {
+    "question": "Çözün: 8x + 10 = 26 ise x kaçtır?",
+    "options": [
+      "2",
+      "1",
+      "6",
+      "10"
+    ],
+    "answer": "2",
+    "explanation": "8x = 26 - 10 = 16, x = 16/8 = 2."
+  },
+  {
+    "question": "Çözün: 4x + 3 = 71 ise x kaçtır?",
+    "options": [
+      "21",
+      "26",
+      "17",
+      "12"
+    ],
+    "answer": "17",
+    "explanation": "4x = 71 - 3 = 68, x = 68/4 = 17."
+  },
+  {
+    "question": "Çözün: 2x + 3 = 23 ise x kaçtır?",
+    "options": [
+      "17",
+      "13",
+      "6",
+      "10"
+    ],
+    "answer": "10",
+    "explanation": "2x = 23 - 3 = 20, x = 20/2 = 10."
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 2, 4, 8, 16, ...",
+    "options": [
+      "28",
+      "40",
+      "37",
+      "32"
+    ],
+    "answer": "32",
+    "explanation": "Her adımda iki katı alınır."
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 1, 1, 2, 3, 5, ...",
+    "options": [
+      "5",
+      "15",
+      "9",
+      "8"
+    ],
+    "answer": "8",
+    "explanation": "Fibonacci dizisi, sonraki terim önceki iki terimin toplamı."
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 3, 6, 11, 18, ...",
+    "options": [
+      "31",
+      "27",
+      "37",
+      "26"
+    ],
+    "answer": "27",
+    "explanation": "Her seferinde artan pozitif tek sayılar eklenir."
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 5, 10, 20, 40, ...",
+    "options": [
+      "85",
+      "80",
+      "87",
+      "79"
+    ],
+    "answer": "80",
+    "explanation": "Her adımda iki katı alınır."
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 7, 14, 28, 56, ...",
+    "options": [
+      "112",
+      "110",
+      "120",
+      "116"
+    ],
+    "answer": "112",
+    "explanation": "Her adımda iki katı alınır."
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 1, 4, 9, 16, ...",
+    "options": [
+      "29",
+      "20",
+      "25",
+      "33"
+    ],
+    "answer": "25",
+    "explanation": "Kare sayılar: n^2."
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 2, 3, 5, 8, ...",
+    "options": [
+      "22",
+      "13",
+      "12",
+      "15"
+    ],
+    "answer": "13",
+    "explanation": "Her seferinde önceki iki sayının toplamı."
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 10, 7, 4, 1, ...",
+    "options": [
+      "1",
+      "6",
+      "-2",
+      "3"
+    ],
+    "answer": "-2",
+    "explanation": "Her adımda 3 çıkarılır."
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 1, 2, 6, 24, ...",
+    "options": [
+      "21",
+      "25",
+      "32",
+      "24"
+    ],
+    "answer": "24",
+    "explanation": "Faktöriyel dizisi: n!"
+  },
+  {
+    "question": "Sıradaki sayıyı bulun: 4, 9, 14, 19, ...",
+    "options": [
+      "24",
+      "34",
+      "21",
+      "28"
+    ],
+    "answer": "24",
+    "explanation": "Her seferinde 5 eklenir."
+  },
+  {
+    "question": "Anahtarı var ama kilidi açamaz, nedir?",
+    "options": [
+      "Ayakkabı",
+      "Kitap",
+      "Piyano.",
+      "Kalem"
+    ],
+    "answer": "Piyano.",
+    "explanation": "Piyano."
+  },
+  {
+    "question": "Her sabah dört ayak, öğlen iki ayak, akşam üç ayak yürür, nedir?",
+    "options": [
+      "Kitap",
+      "İnsan.",
+      "Kalem",
+      "Ayakkabı"
+    ],
+    "answer": "İnsan.",
+    "explanation": "İnsan."
+  },
+  {
+    "question": "Denizde gözü vardır ama görmez, nedir?",
+    "options": [
+      "Kitap",
+      "Ayakkabı",
+      "Kalem",
+      "İğne."
+    ],
+    "answer": "İğne.",
+    "explanation": "İğne."
+  },
+  {
+    "question": "Yazarken bozarım, silinirsem yazarım, nedir?",
+    "options": [
+      "Kurşun kalem.",
+      "Kalem",
+      "Ayakkabı",
+      "Kitap"
+    ],
+    "answer": "Kurşun kalem.",
+    "explanation": "Kurşun kalem."
+  },
+  {
+    "question": "Gece yürür, gündüz uyur, nedir?",
+    "options": [
+      "Ayakkabı",
+      "Kalem",
+      "Kitap",
+      "Yıldız."
+    ],
+    "answer": "Yıldız.",
+    "explanation": "Yıldız."
+  },
+  {
+    "question": "En hızlı ne uçar?",
+    "options": [
+      "Kitap",
+      "Zaman.",
+      "Ayakkabı",
+      "Kalem"
+    ],
+    "answer": "Zaman.",
+    "explanation": "Zaman."
+  },
+  {
+    "question": "Yağmur yağarken kuru kalabileceğiniz yer nedir?",
+    "options": [
+      "Ayakkabı",
+      "Şemsiye altı.",
+      "Kitap",
+      "Kalem"
+    ],
+    "answer": "Şemsiye altı.",
+    "explanation": "Şemsiye altı."
+  },
+  {
+    "question": "Sonsuz kere bölünse küçülmeyen şey nedir?",
+    "options": [
+      "Kalem",
+      "Sıfır.",
+      "Kitap",
+      "Ayakkabı"
+    ],
+    "answer": "Sıfır.",
+    "explanation": "Sıfır."
+  },
+  {
+    "question": "Ne kadar çok alırsanız o kadar büyür, nedir?",
+    "options": [
+      "Çukur.",
+      "Ayakkabı",
+      "Kalem",
+      "Kitap"
+    ],
+    "answer": "Çukur.",
+    "explanation": "Çukur."
+  },
+  {
+    "question": "Karanlıkta bakan ışığı alır, nedir?",
+    "options": [
+      "Güneş.",
+      "Ayakkabı",
+      "Kitap",
+      "Kalem"
+    ],
+    "answer": "Güneş.",
+    "explanation": "Güneş."
+  },
+  {
+    "question": "Uçabilir ama kanatları yok, nedir?",
+    "options": [
+      "Kalem",
+      "Ayakkabı",
+      "Kitap",
+      "Zaman."
+    ],
+    "answer": "Zaman.",
+    "explanation": "Zaman."
+  },
+  {
+    "question": "Suda yaşayan ama ıslanmaz, nedir?",
+    "options": [
+      "Ayakkabı",
+      "Kalem",
+      "Balık.",
+      "Kitap"
+    ],
+    "answer": "Balık.",
+    "explanation": "Balık."
+  },
+  {
+    "question": "Dik durur, en iyi arkadaşını keser, nedir?",
+    "options": [
+      "Ayakkabı",
+      "Kalem",
+      "Kitap",
+      "Makas."
+    ],
+    "answer": "Makas.",
+    "explanation": "Makas."
+  },
+  {
+    "question": "Sürekli yükselir ama asla düşmez, nedir?",
+    "options": [
+      "Ayakkabı",
+      "Kalem",
+      "Yaş.",
+      "Kitap"
+    ],
+    "answer": "Yaş.",
+    "explanation": "Yaş."
+  },
+  {
+    "question": "Her şeyi yer ama kendini yemez, nedir?",
+    "options": [
+      "Ayakkabı",
+      "Kitap",
+      "Ateş.",
+      "Kalem"
+    ],
+    "answer": "Ateş.",
+    "explanation": "Ateş."
+  },
+  {
+    "question": "Gölge nerede en uzun?",
+    "options": [
+      "Ayakkabı",
+      "Gün doğumunda ve gün batımında.",
+      "Kitap",
+      "Kalem"
+    ],
+    "answer": "Gün doğumunda ve gün batımında.",
+    "explanation": "Gün doğumunda ve gün batımında."
+  },
+  {
+    "question": "İki terazi tartıyor; biri 10kg altın diğeri 10kg pamuk; hangisi ağır?",
+    "options": [
+      "Eşittir.",
+      "Kitap",
+      "Kalem",
+      "Ayakkabı"
+    ],
+    "answer": "Eşittir.",
+    "explanation": "Eşittir."
+  },
+  {
+    "question": "Bir kutu içinde kocaman ama dışarıda küçük, nedir?",
+    "options": [
+      "Kalem",
+      "Harita.",
+      "Ayakkabı",
+      "Kitap"
+    ],
+    "answer": "Harita.",
+    "explanation": "Harita."
+  },
+  {
+    "question": "Yüksek tepelere çıktıkça küçülür, nedir?",
+    "options": [
+      "Kitap",
+      "Kalem",
+      "Ayakkabı",
+      "Gölge."
+    ],
+    "answer": "Gölge.",
+    "explanation": "Gölge."
+  },
+  {
+    "question": "Ekmek fırınında ne pişmez?",
+    "options": [
+      "Kalem",
+      "Ayakkabı",
+      "Kitap",
+      "Ekmeğin kendisi."
+    ],
+    "answer": "Ekmeğin kendisi.",
+    "explanation": "Ekmeğin kendisi."
+  },
+  {
+    "question": "Elma: Meyve :: Havuç: ?",
+    "options": [
+      "Yeşillik",
+      "Turuncu",
+      "Sebze",
+      "Sağlıklı"
+    ],
+    "answer": "Sebze",
+    "explanation": "Elma: Meyve :: Havuç: ? ilişkisidir."
+  },
+  {
+    "question": "Kedi: Miyav :: Köpek: ?",
+    "options": [
+      "Ses",
+      "Yavru",
+      "Havlar",
+      "Büyük"
+    ],
+    "answer": "Havlar",
+    "explanation": "Kedi: Miyav :: Köpek: ? ilişkisidir."
+  },
+  {
+    "question": "Gündüz: Işık :: Gece: ?",
+    "options": [
+      "Karanlık",
+      "Aydınlık",
+      "Parıltı",
+      "Işın"
+    ],
+    "answer": "Karanlık",
+    "explanation": "Gündüz: Işık :: Gece: ? ilişkisidir."
+  },
+  {
+    "question": "Sıcak: Ateş :: Soğuk: ?",
+    "options": [
+      "Kırmızı",
+      "Hava",
+      "Buz",
+      "Toprak"
+    ],
+    "answer": "Buz",
+    "explanation": "Sıcak: Ateş :: Soğuk: ? ilişkisidir."
+  },
+  {
+    "question": "Kalem: Yazı :: Fırça: ?",
+    "options": [
+      "Kazımak",
+      "Resim",
+      "Sanat",
+      "Tuval"
+    ],
+    "answer": "Resim",
+    "explanation": "Kalem: Yazı :: Fırça: ? ilişkisidir."
+  },
+  {
+    "question": "Araba: Yol :: Gemi: ?",
+    "options": [
+      "Su",
+      "Fırat Nehri",
+      "Deniz",
+      "Islak"
+    ],
+    "answer": "Deniz",
+    "explanation": "Araba: Yol :: Gemi: ? ilişkisidir."
+  },
+  {
+    "question": "Uçak: Hava :: Gemi: ?",
+    "options": [
+      "Su",
+      "Toprak",
+      "Gaz",
+      "Plazma"
+    ],
+    "answer": "Su",
+    "explanation": "Uçak: Hava :: Gemi: ? ilişkisidir."
+  },
+  {
+    "question": "Kitap: Bilgi :: Müzik: ?",
+    "options": [
+      "Çizim",
+      "Zeka",
+      "Nota",
+      "Oyun"
+    ],
+    "answer": "Nota",
+    "explanation": "Kitap: Bilgi :: Müzik: ? ilişkisidir."
+  },
+  {
+    "question": "Saat: Zaman :: Termometre: ?",
+    "options": [
+      "Basınç",
+      "Sıcaklık",
+      "Yükseklik",
+      "Hız"
+    ],
+    "answer": "Sıcaklık",
+    "explanation": "Saat: Zaman :: Termometre: ? ilişkisidir."
+  },
+  {
+    "question": "Kalp: Atar :: Akciğer: ?",
+    "options": [
+      "Hızlı",
+      "Çarpıntı",
+      "Solunum",
+      "Diyafram"
+    ],
+    "answer": "Solunum",
+    "explanation": "Kalp: Atar :: Akciğer: ? ilişkisidir."
+  },
+  {
+    "question": "Güneş: Gündüz :: Ay: ?",
+    "options": [
+      "Sabah",
+      "Öğlen",
+      "Gece",
+      "Öğlen Sonu"
+    ],
+    "answer": "Gece",
+    "explanation": "Güneş: Gündüz :: Ay: ? ilişkisidir."
+  },
+  {
+    "question": "Anahtar: Kapı :: Şifre: ?",
+    "options": [
+      "Çözmek",
+      "Kasa",
+      "Yazmak",
+      "Yapmak"
+    ],
+    "answer": "Kasa",
+    "explanation": "Anahtar: Kapı :: Şifre: ? ilişkisidir."
+  },
+  {
+    "question": "Telefon: Konuşma :: Kamera: ?",
+    "options": [
+      "Gürültü",
+      "Piksel",
+      "Görüntü",
+      "Net"
+    ],
+    "answer": "Görüntü",
+    "explanation": "Telefon: Konuşma :: Kamera: ? ilişkisidir."
+  },
+  {
+    "question": "Ağaç: Orman :: İnsan: ?",
+    "options": [
+      "Yok",
+      "Var",
+      "Parça",
+      "Toplum"
+    ],
+    "answer": "Toplum",
+    "explanation": "Ağaç: Orman :: İnsan: ? ilişkisidir."
+  },
+  {
+    "question": "Para: Ekonomi :: Bilgi: ?",
+    "options": [
+      "Eğitim",
+      "Cahil",
+      "Bilgisiz",
+      "Yanlış"
+    ],
+    "answer": "Eğitim",
+    "explanation": "Para: Ekonomi :: Bilgi: ? ilişkisidir."
+  },
+  {
+    "question": "Ev: Barınak :: Kitap: ?",
+    "options": [
+      "Özet",
+      "Yanıt",
+      "Bilgi Kaynağı",
+      "Okumak"
+    ],
+    "answer": "Bilgi Kaynağı",
+    "explanation": "Ev: Barınak :: Kitap: ? ilişkisidir."
+  },
+  {
+    "question": "Deniz: Su :: Ateş: ?",
+    "options": [
+      "Turuncu",
+      "Alev",
+      "Fosil Yakıt",
+      "Karbondioksit"
+    ],
+    "answer": "Alev",
+    "explanation": "Deniz: Su :: Ateş: ? ilişkisidir."
+  },
+  {
+    "question": "Ay: Dünya :: Dünya: ?",
+    "options": [
+      "Gezegen",
+      "Uzak",
+      "Toprak",
+      "Güneş"
+    ],
+    "answer": "Güneş",
+    "explanation": "Ay: Dünya :: Dünya: ? ilişkisidir."
+  },
+  {
+    "question": "Kalem: Mürekkep :: Boya: ?",
+    "options": [
+      "Fırça",
+      "Sanat",
+      "Boyama",
+      "Kitap"
+    ],
+    "answer": "Fırça",
+    "explanation": "Kalem: Mürekkep :: Boya: ? ilişkisidir."
+  },
+  {
+    "question": "Deniz: Tuzlu :: Nehir: ?",
+    "options": [
+      "Tuz",
+      "Acı",
+      "Tatlı",
+      "Balık"
+    ],
+    "answer": "Tatlı",
+    "explanation": "Deniz: Tuzlu :: Nehir: ? ilişkisidir."
+  },
+  {
+    "question": "Ahmet ve Ayşe aynı yaştadır. Ahmet 5 yıl sonra 30 yaşında olacaksa, Ayşe şu an kaç yaşındadır?",
+    "options": [
+      "30",
+      "25",
+      "35",
+      "40"
+    ],
+    "answer": "25",
+    "explanation": "25"
+  },
+  {
+    "question": "Tavuk ve ineklerden toplam 10 baş, 28 ayak varsa tavuk kaçtır?",
+    "options": [
+      "6",
+      "5",
+      "7",
+      "4"
+    ],
+    "answer": "6",
+    "explanation": "6"
+  },
+  {
+    "question": "Otobüste 15 yolcu, her durakta 2 biniyor, 1 iniyorsa 3 durak sonra kaç yolcu kalır?",
+    "options": [
+      "10",
+      "15",
+      "18",
+      "12"
+    ],
+    "answer": "18",
+    "explanation": "18"
+  },
+  {
+    "question": "Havuz 2 muslukla 2 saatte doluyorsa, tek muslukla kaç saatte dolar?",
+    "options": [
+      "2",
+      "4",
+      "8",
+      "6"
+    ],
+    "answer": "4",
+    "explanation": "4"
+  },
+  {
+    "question": "3 kırmızı, 5 mavi top içinden kırmızı çekme olasılığı nedir?",
+    "options": [
+      "3/5",
+      "5/8",
+      "3/8",
+      "5/3"
+    ],
+    "answer": "3/8",
+    "explanation": "3/8"
+  },
+  {
+    "question": "10 kitap okuyan Ali’nin iki katının dörtte biri kitap okuyan Ahmet kaç kitap okudu?",
+    "options": [
+      "5",
+      "10",
+      "20",
+      "2.5"
+    ],
+    "answer": "5",
+    "explanation": "5"
+  },
+  {
+    "question": "3 saat 20 dakika kaç dakikadır?",
+    "options": [
+      "180",
+      "190",
+      "200",
+      "210"
+    ],
+    "answer": "200",
+    "explanation": "200"
+  },
+  {
+    "question": "4 kişi 4 günde 4 ev inşa ediyorsa 8 kişi 8 günde kaç ev inşa eder?",
+    "options": [
+      "32",
+      "8",
+      "16",
+      "12"
+    ],
+    "answer": "16",
+    "explanation": "16"
+  },
+  {
+    "question": "Bir dikdörtgenin alanı a×b ise çevresi?",
+    "options": [
+      "2(a+b)",
+      "2a+b+c",
+      "4a",
+      "2b+a"
+    ],
+    "answer": "2(a+b)",
+    "explanation": "2(a+b)"
+  },
+  {
+    "question": "Bir sayının %25'i 20 ise sayı kaçtır?",
+    "options": [
+      "100",
+      "80",
+      "90",
+      "75"
+    ],
+    "answer": "80",
+    "explanation": "80"
+  },
+  {
+    "question": "Yarım elmanın yarısı kaç tam elmadır?",
+    "options": [
+      "1/4",
+      "2/5",
+      "2/4",
+      "1/3"
+    ],
+    "answer": "1/4",
+    "explanation": "Çeyrek"
+  },
+  {
+    "question": "5 km/s hızla 2 saat yürüyen kişi kaç km yürür?",
+    "options": [
+      "10",
+      "15",
+      "5",
+      "20"
+    ],
+    "answer": "10",
+    "explanation": "Çarpma"
+  },
+  {
+    "question": "Bir hafta 7 gün ise 5 hafta kaç gündür?",
+    "options": [
+      "30",
+      "40",
+      "25",
+      "35"
+    ],
+    "answer": "35",
+    "explanation": "35"
+  },
+  {
+    "question": "Bir düzlem üçgenin iç açılarının toplamı?",
+    "options": [
+      "160",
+      "200",
+      "220",
+      "180"
+    ],
+    "answer": "180",
+    "explanation": "180"
+  },
+  {
+    "question": "12:00'de akrep ve yelkovan arasındaki açı?",
+    "options": [
+      "0",
+      "120",
+      "90",
+      "180"
+    ],
+    "answer": "0",
+    "explanation": "Derece"
+  },
+  {
+    "question": "Yaşı x olan kişi 5 yıl önce kaç yaşındaydı?",
+    "options": [
+      "x",
+      "x+3",
+      "x-4",
+      "x-5"
+    ],
+    "answer": "x-5",
+    "explanation": "formül"
+  },
+  {
+    "question": "Günde 8 saat çalışmak haftada 5 gün çalışmanın toplam saati?",
+    "options": [
+      "40",
+      "50",
+      "60",
+      "70"
+    ],
+    "answer": "40",
+    "explanation": "Çarpım"
+  },
+  {
+    "question": "Bir seyahat 120 km ve 60 km/s hızla kaç saatte tamamlanır?",
+    "options": [
+      "5",
+      "4",
+      "3",
+      "2"
+    ],
+    "answer": "2",
+    "explanation": "Bölüm"
+  },
+  {
+    "question": "3 tam, 1/2 yarım ve 1/4 kesin toplam nedir?",
+    "options": [
+      "4.25",
+      "3.75",
+      "3.50",
+      "4.00"
+    ],
+    "answer": "3.75",
+    "explanation": "Matematiksel"
+  }
+]
